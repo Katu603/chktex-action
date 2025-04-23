@@ -52,9 +52,9 @@ LABEL com.github.actions.name="ChkTeX Action"
 LABEL com.github.actions.description="Lint your LaTeX files with ChkTeX"
 LABEL com.github.actions.icon="edit"
 LABEL com.github.actions.color="yellow"
-LABEL repository="https://github.com/j2kun/chktex-action"
-LABEL homepage="https://github.com/j2kun"
-LABEL maintainer="Jeremy Kun <j2kun@users.noreply.github.com>"
+LABEL repository="https://github.com/Katu603/chktex-action"
+LABEL homepage="https://github.com/Katu603"
+LABEL maintainer="Ernst Haft <Katu603@users.noreply.github.com>"
 
 WORKDIR /usr/src/chktex-action/
 
