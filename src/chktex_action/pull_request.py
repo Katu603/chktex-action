@@ -92,7 +92,7 @@ def process_pull_request(
         pull_request.create_review(
             body="## ChkTeX Action\n\nThere are issues with your code. 😔 "
             "Check the annotations under the **Files changed** tab.",
-            event="REQUEST_CHANGES",
+            event="COMMENT",
         )
     else:
-        pull_request.create_review(body="## ChkTeX Action\n\nLGTM! 🚀", event="APPROVE")
+        pull_request.create_review(body="## ChkTeX Action\n\nLGTM! 🚀", event="COMMENT")

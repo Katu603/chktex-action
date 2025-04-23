@@ -32,7 +32,7 @@ def parse_chktex_output(stdout: str) -> list[Error]:
     """
 
     pattern = re.compile(
-        r"^(Error|Warning)\s+(\d+)\s+in\s+(.*?)\s+line\s+(\d+):\s+(.+)$"
+        r"^(Message|Error|Warning)\s+(\d+)\s+in\s+(.*?)\s+line\s+(\d+):\s+(.+)$"
     )
 
     lines = [line for line in stdout.splitlines() if line.strip()]
@@ -42,7 +42,9 @@ def parse_chktex_output(stdout: str) -> list[Error]:
     error_index = -1
 
     for line in lines:
+        Log.notice(f'line: {line}')
         error_message = pattern.match(line)
+        Log.notice(f'message: {error_message}')
 
         if error_message:
             error = Error(
@@ -58,8 +60,11 @@ def parse_chktex_output(stdout: str) -> list[Error]:
             error_index = error_index + 1
 
             continue
-
-        errors[error_index].context.append(line)
+        Log.notice(f'error_index: {error_index}')
+        if error_index < 0:
+            error_index = 0
+        if error_index < len(errors):
+            errors[error_index].context.append(line)
 
     return errors
 
@@ -118,6 +123,7 @@ def run_chktex(github_workspace_path: str, files: list[str]) -> list[Error]:
             capture_output=True,
             text=True,
             check=False,
+            encoding=utf-8,
         )
 
         stdout = completed_process.stdout
