@@ -89,7 +89,7 @@ def main() -> None:
 
         sys.exit(0)
 
-    Log.notice("Running ChkTeX version 1.7.9")
+    Log.notice("Running ChkTeX version 1.7.9 ...")
 
     errors = run_chktex(github_workspace_path, files)
 
